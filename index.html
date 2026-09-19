@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>С нейронками на ты · Школа нейросетей с Ксенией Соло</title>
+<style>
+  :root{
+    --orange:#F26B1B; --dark:#1A1A1A; --gray:#6B7280; --line:#E2E2E0;
+    --tint:#FDEEE0; --bg:#FFFFFF; --soft:#FAF7F4;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--dark);background:var(--bg);line-height:1.5}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.12;font-weight:800;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .kicker{color:var(--orange);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:14px;margin-bottom:14px}
+  .btn{display:inline-block;background:var(--orange);color:#fff;font-weight:800;font-size:18px;padding:16px 34px;border-radius:14px;transition:.15s;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(242,107,27,.35)}
+  .btn.ghost{background:transparent;color:var(--orange);border:2px solid var(--orange)}
+  section{padding:72px 0}
+  .muted{color:var(--gray)}
+
+  /* HEADER */
+  header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1080px;margin:0 auto}
+  .logo{font-weight:800;font-size:20px}
+  .logo b{color:var(--orange)}
+  .nav a.small{font-size:15px;font-weight:700}
+
+  /* HERO */
+  .hero{background:linear-gradient(180deg,var(--soft),#fff);padding:80px 0 60px}
+  .hero .kicker{font-size:15px}
+  .hero h1{font-size:56px;margin-bottom:20px}
+  .hero h1 .accent{color:var(--orange)}
+  .hero p.lead{font-size:22px;color:#333;max-width:620px;margin-bottom:32px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .heroes{display:flex;gap:10px;margin-top:36px;flex-wrap:wrap}
+  .hchip{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--line);border-radius:40px;padding:8px 16px;font-weight:700}
+  .hchip .emo{font-size:22px}
+  .mini{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top center;display:block}
+  .hero-photo{width:180px;height:180px;border-radius:50%;object-fit:cover;object-position:top center;display:block;margin:0 auto 16px;border:5px solid #FDEEE0}
+  .barbig{display:inline-block;width:64px;height:8px;background:var(--orange);border-radius:4px;margin-bottom:22px}
+
+  /* GRID CARDS */
+  .grid{display:grid;gap:20px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px}
+  .card h3{font-size:20px;margin-bottom:8px}
+  .card .n{color:var(--orange);font-weight:800;font-size:15px;margin-bottom:10px}
+
+  /* TARIFFS */
+  .tariffs{background:var(--soft)}
+  .price{display:grid;gap:22px;grid-template-columns:repeat(3,1fr)}
+  .plan{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-direction:column}
+  .plan.best{border:2px solid var(--orange);box-shadow:0 12px 30px rgba(242,107,27,.14);position:relative}
+  .plan.best .tag{position:absolute;top:-14px;left:30px;background:var(--orange);color:#fff;font-weight:800;font-size:13px;padding:5px 14px;border-radius:20px}
+  .plan h3{font-size:22px}
+  .plan .amount{font-size:40px;font-weight:800;margin:14px 0 6px}
+  .plan ul{list-style:none;margin:16px 0 24px}
+  .plan li{padding:8px 0 8px 28px;position:relative;color:#333}
+  .plan li:before{content:"✓";position:absolute;left:0;color:var(--orange);font-weight:800}
+  .plan .btn{margin-top:auto;text-align:center}
+
+  /* STEPS */
+  .steps{display:grid;gap:18px;grid-template-columns:repeat(4,1fr)}
+  .step .big{font-size:34px;font-weight:800;color:var(--orange)}
+
+  /* TEACHERS */
+  .teachers{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .teacher{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}
+  .teacher .role{color:var(--orange);font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.05em}
+  .teacher h3{font-size:24px;margin:6px 0 10px}
+
+  /* FAQ */
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px}
+  .faq summary{font-weight:700;font-size:18px;cursor:pointer;list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq p{margin-top:10px;color:#444}
+
+  /* CTA */
+  .cta{background:var(--dark);color:#fff;border-radius:24px;padding:56px;text-align:center;margin:0 24px}
+  .cta h2{font-size:40px;margin-bottom:16px}
+  .cta p{color:#cfcfcf;font-size:19px;margin-bottom:28px}
+
+  footer{padding:40px 0 60px;text-align:center;color:var(--gray);font-size:15px}
+  footer a{color:var(--orange);font-weight:700}
+
+  @media(max-width:860px){
+    .hero h1{font-size:40px}
+    .g3,.price,.steps,.teachers{grid-template-columns:1fr}
+    .g2{grid-template-columns:1fr}
+    .cta{padding:36px 22px}
+    section{padding:52px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">С <b>нейронками</b> на ты</div>
+    <div style="display:flex;gap:22px;align-items:center">
+      <a class="small muted" href="#program">Программа</a>
+      <a class="small muted" href="#tariffs">Тарифы</a>
+      <a class="small muted" href="#teachers">Преподаватели</a>
+      <a class="btn" style="padding:10px 20px;font-size:15px" href="#tariffs">Записаться</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <span class="barbig"></span>
+    <div class="kicker">Школа нейросетей · ИИ для жизни и бизнеса</div>
+    <h1>Нейросети —<br><span class="accent">просто о сложном</span></h1>
+    <p class="lead">За 1 месяц научитесь создавать тексты, фото, звук, видео, аватара и ИИ-агента под свои задачи. Без технических знаний — по-человечески.</p>
+    <div class="hero-cta">
+      <a class="btn" href="#tariffs">Записаться на 1 поток</a>
+      <a class="btn ghost" href="https://t.me/+zKMenI8RjXw5MzY6">Telegram-канал</a>
+    </div>
+    <div class="heroes">
+      <div class="hchip"><img class="mini" src="ksu.jpg" alt="Ксю"> Красотка Ксю — стиль и креатив</div>
+      <div class="hchip"><img class="mini" src="ivanich.jpg" alt="Иваныч"> Иваныч — ваш ИИ-помощник</div>
+    </div>
+  </div>
+</div>
+
+<!-- ДЛЯ КОГО -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Для кого</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Подойдёт, если вы…</h2>
+    <div class="grid g3">
+      <div class="card"><div class="n">01</div><h3>Предприниматель</h3><p class="muted">Хотите контент и продажи без подрядчиков — сами, быстро и дёшево.</p></div>
+      <div class="card"><div class="n">02</div><h3>Эксперт / блогер</h3><p class="muted">Нужна упаковка себя: соцсети, визуал, видео, аватар, воронки.</p></div>
+      <div class="card"><div class="n">03</div><h3>Новичок «на вы» с ИИ</h3><p class="muted">Боитесь и не знаете, с чего начать. Проведём за руку от простого к сложному.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ПРОГРАММА -->
+<section id="program" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="kicker">Программа</div>
+    <h2 style="font-size:34px;margin-bottom:10px">Что вы освоите за месяц</h2>
+    <p class="muted" style="margin-bottom:32px;font-size:18px">8 занятий · Вт и Пт, 19:00–21:00 · 40 мин теории + 40 мин практики · 2 задания к каждой теме</p>
+    <div class="grid g3">
+      <div class="card"><div class="n">Урок 1</div><h3>Знакомство с ИИ</h3><p class="muted">Как устроены нейросети и юридические аспекты — на примерах.</p></div>
+      <div class="card"><div class="n">Урок 2</div><h3>Текстовые нейросети</h3><p class="muted">Писать и редактировать, промпты, ваш авторский стиль.</p></div>
+      <div class="card"><div class="n">Урок 3</div><h3>Нейрофото</h3><p class="muted">Визуал, который продаёт: свет, ракурсы, режиссура кадра.</p></div>
+      <div class="card"><div class="n">Урок 4</div><h3>Звук и музыка</h3><p class="muted">Suno и ElevenLabs: песни, озвучка, голос под ваш проект.</p></div>
+      <div class="card"><div class="n">Урок 5</div><h3>Нейровидео</h3><p class="muted">Оживить кадр, движение камеры, липсинк — говорящий герой.</p></div>
+      <div class="card"><div class="n">Урок 6</div><h3>ИИ-аватар</h3><p class="muted">Цифровой двойник и виртуальный ведущий вместо съёмок.</p></div>
+      <div class="card"><div class="n">Урок 7</div><h3>ИИ-агент</h3><p class="muted">Личный помощник: посты, файлы, таблицы, переписка.</p></div>
+      <div class="card"><div class="n">Урок 8</div><h3>Выпускной</h3><p class="muted">Защита итогового проекта, сертификат и отзывы.</p></div>
+      <div class="card" style="background:var(--tint);border-color:var(--tint)"><div class="n">Бонус</div><h3>Инструкции к каждой теме</h3><p class="muted">Пошагово: где, как подключить и оплатить сервисы.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- КАК ПРОХОДИТ -->
+<section>
+  <div class="wrap">
+    <div class="kicker">Как проходит</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Живой поток с поддержкой</h2>
+    <div class="steps">
+      <div class="step card"><div class="big">2×</div><h3>в неделю</h3><p class="muted">Вт и Пт, 19:00–21:00, онлайн.</p></div>
+      <div class="step card"><div class="big">40+40</div><h3>теория+практика</h3><p class="muted">Сразу делаем вместе на занятии.</p></div>
+      <div class="step card"><div class="big">💬</div><h3>чат и куратор</h3><p class="muted">Разбор домашек и обратная связь.</p></div>
+      <div class="step card"><div class="big">🎓</div><h3>проект</h3><p class="muted">Итоговый проект + сертификат.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ТАРИФЫ -->
+<section id="tariffs" class="tariffs">
+  <div class="wrap">
+    <div class="kicker">Тарифы</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Выберите формат</h2>
+    <div class="price">
+      <div class="plan">
+        <h3>Самостоятельно</h3>
+        <div class="amount">5 000 ₽</div>
+        <div class="muted">Доступ к видеозаписям курса</div>
+        <ul>
+          <li>Все уроки в записи</li>
+          <li>Материалы и инструкции</li>
+          <li>Учитесь в своём темпе</li>
+        </ul>
+        <a class="btn ghost" href="#cta">Выбрать</a>
+      </div>
+      <div class="plan best">
+        <span class="tag">ХИТ · живой поток</span>
+        <h3>С кураторством</h3>
+        <div class="amount">35 000 ₽</div>
+        <div class="muted">Живой поток в группе 10–15 человек</div>
+        <ul>
+          <li>Занятия Вт/Пт 19:00–21:00</li>
+          <li>Разбор домашек куратором</li>
+          <li>Чат потока и поддержка</li>
+          <li>Итоговый проект + сертификат</li>
+        </ul>
+        <a class="btn" href="#cta">Записаться</a>
+      </div>
+      <div class="plan">
+        <h3>С поддержкой</h3>
+        <div class="amount">10 000 ₽</div>
+        <div class="muted">Видео + ответы на вопросы</div>
+        <ul>
+          <li>Все уроки в записи</li>
+          <li>Ответы на вопросы в чате</li>
+          <li>Материалы и инструкции</li>
+        </ul>
+        <a class="btn ghost" href="#cta">Выбрать</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ПРЕПОДАВАТЕЛИ -->
+<section style="background:var(--soft)">
+  <div class="wrap">
+    <div class="kicker">Наши герои</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Ксю и Иваныч — ваши проводники в мир ИИ</h2>
+    <div class="teachers">
+      <div class="teacher" style="text-align:center">
+        <img src="ksu.jpg" class="hero-photo" alt="Красотка Ксю">
+        <div class="role">Креатив и стиль</div>
+        <h3>Красотка Ксю</h3>
+        <p class="muted">Отвечает за то, чтобы контент цеплял, был живым и красивым. Эмоции, вкус, вдохновение.</p>
+      </div>
+      <div class="teacher" style="text-align:center">
+        <img src="ivanich.jpg" class="hero-photo" alt="Иваныч">
+        <div class="role">Техника и точность</div>
+        <h3>Иваныч</h3>
+        <p class="muted">Знает, какие кнопки нажать и как объяснить нейросети, что именно вам нужно. Промпты, параметры, порядок.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="teachers">
+  <div class="wrap">
+    <div class="kicker">Преподаватели</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Кто ведёт</h2>
+    <div class="teachers">
+      <div class="teacher">
+        <div class="role">Визуал и креатив</div>
+        <h3>Ксения Соло</h3>
+        <p class="muted">Фотограф и AI-креатор (@KseniaSoloAI). Нейрофото, видео, аватары — визуал, неотличимый от реального. Лицо школы.</p>
+      </div>
+      <div class="teacher">
+        <div class="role">Методология и агенты</div>
+        <h3>Татьяна Маштакова</h3>
+        <p class="muted">Педагог и организатор. Тексты, ИИ-агенты, методика «просто о сложном», юридические аспекты и структура обучения.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="kicker">Вопросы</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Частые вопросы</h2>
+    <details><summary>Нужны ли технические знания?</summary><p>Нет. Мы начинаем с нуля и идём от простого к сложному. Всё показываем на примерах и делаем вместе на занятии.</p></details>
+    <details><summary>Когда старт?</summary><p>1-й живой поток стартует 5 октября 2026. Группа 10–15 человек. Записаться можно уже сейчас.</p></details>
+    <details><summary>Что если пропущу занятие?</summary><p>Все занятия в записи. Куратор поможет догнать, а вопросы можно задать в чате потока.</p></details>
+    <details><summary>Будет ли документ об окончании?</summary><p>Да, сертификат участника. Курс оформлен как информационно-консультационные услуги.</p></details>
+    <details><summary>Какие сервисы понадобятся?</summary><p>Бесплатные и платные ИИ-сервисы. К каждой теме — инструкция, где и как подключить и оплатить.</p></details>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta">
+    <h2>Начните говорить с нейронками на ты</h2>
+    <p>Старт 1-го потока — 5 октября 2026. Места ограничены: группа 10–15 человек.</p>
+    <a class="btn" href="https://t.me/+zKMenI8RjXw5MzY6" style="background:var(--orange)">Записаться в Telegram</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Школа нейросетей «С нейронками на ты» · Ксения Соло и Татьяна Маштакова</p>
+    <p style="margin-top:8px">
+      <a href="https://t.me/+zKMenI8RjXw5MzY6">Telegram-канал</a> ·
+      <a href="https://t.me/+nbq1csTUjV9kOGIy">Общий чат</a>
+    </p>
+    <p class="muted" style="margin-top:14px;font-size:13px">© 2026 · Нейросети — просто о сложном</p>
+  </div>
+</footer>
+
+</body>
+</html>
