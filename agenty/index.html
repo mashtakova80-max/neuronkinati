@@ -37,6 +37,7 @@
   .hchip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:40px;padding:8px 16px;font-weight:700;color:#fff}
   .mini{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top center;display:block}
   .hero-photo{width:180px;height:180px;border-radius:50%;object-fit:cover;object-position:top center;display:block;margin:0 auto 16px;border:5px solid var(--tint)}
+  .robot-img{max-width:460px;width:100%;border-radius:20px;display:block;margin:0 auto 8px;box-shadow:0 14px 34px rgba(15,24,48,.14)}
   .barbig{display:inline-block;width:64px;height:8px;background:var(--orange);border-radius:4px;margin-bottom:22px}
   .grid{display:grid;gap:20px}
   .g3{grid-template-columns:repeat(3,1fr)}
@@ -104,8 +105,8 @@
       <a class="btn ghost" href="#program" style="color:#fff;border-color:#5B8CFF">Программа курса</a>
     </div>
     <div class="heroes">
-      <div class="hchip"><img class="mini" src="ivanich.jpg" alt="Иваныч"> Иваныч — техника и агенты</div>
-      <div class="hchip"><img class="mini" src="ksu.jpg" alt="Ксю"> Красотка Ксю — стиль и подача</div>
+      <div class="hchip">🤖 Робот РЕЛЕ — ваш помощник</div>
+      <div class="hchip">⚙️ Настройка под ключ с Георгием</div>
     </div>
   </div>
 </div>
@@ -156,21 +157,11 @@
 
 <section style="background:var(--soft)">
   <div class="wrap">
-    <div class="kicker">Наши герои</div>
-    <h2 style="font-size:34px;margin-bottom:32px">Иваныч и Ксю — ваши проводники</h2>
-    <div class="teachers">
-      <div class="teacher" style="text-align:center">
-        <img src="ivanich.jpg" class="hero-photo" alt="Иваныч">
-        <div class="role">Техника и агенты</div>
-        <h3>Иваныч</h3>
-        <p class="muted">Главный по агентам: промпты, инструменты, автоматизации. Объяснит любую «кнопку» простыми словами.</p>
-      </div>
-      <div class="teacher" style="text-align:center">
-        <img src="ksu.jpg" class="hero-photo" alt="Красотка Ксю">
-        <div class="role">Стиль и подача</div>
-        <h3>Красотка Ксю</h3>
-        <p class="muted">Чтобы ваш агент общался красиво и по-человечески, а контент цеплял.</p>
-      </div>
+    <div class="kicker">Ваш помощник</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Робот РЕЛЕ — проводник в мир агентов</h2>
+    <div style="max-width:520px;margin:0 auto;text-align:center">
+      <img src="rele.png" class="robot-img" alt="Робот РЕЛЕ">
+      <p class="muted" style="font-size:18px;margin-top:10px">Дружелюбный админ курса. Проведёт за руку по каждому шагу: какие сервисы подключить, какие кнопки нажать и как собрать своего агента — без страха и заумных слов.</p>
     </div>
   </div>
 </section>
@@ -225,14 +216,14 @@
     <h2 style="font-size:34px;margin-bottom:32px">Кто ведёт</h2>
     <div class="teachers">
       <div class="teacher">
-        <div class="role">Методология и агенты</div>
+        <div class="role">Методика и ведение</div>
         <h3>Татьяна Маштакова</h3>
-        <p class="muted">Педагог и организатор. Отвечает за методику «просто о сложном», ИИ-агентов, автоматизацию процессов и структуру обучения.</p>
+        <p class="muted">Педагог и организатор. Ведёт курс, отвечает за методику «просто о сложном», структуру обучения и практику с агентами.</p>
       </div>
       <div class="teacher">
-        <div class="role">Визуал и подача</div>
-        <h3>Ксения Соло</h3>
-        <p class="muted">Фотограф и AI-креатор (@KseniaSoloAI). Чтобы ваши агенты и контент выглядели дорого и по-человечески. Лицо школы.</p>
+        <div class="role">Техническая часть</div>
+        <h3>Георгий Маштаков</h3>
+        <p class="muted">Отвечает за технику: настройку сервисов, подключения, интеграции и автоматизации — чтобы у каждого всё заработало.</p>
       </div>
     </div>
   </div>
@@ -260,7 +251,7 @@
 
 <footer>
   <div class="wrap">
-    <p>Курс «С агентами на ты» · школа «С нейронками на ты» · Ксения Соло и Татьяна Маштакова</p>
+    <p>Курс «С агентами на ты» · школа «С нейронками на ты» · Татьяна Маштакова и Георгий Маштаков</p>
     <p style="margin-top:8px">
       <a href="https://mashtakova80-max.github.io/neuronkinati/">Основной сайт школы</a>
     </p>
