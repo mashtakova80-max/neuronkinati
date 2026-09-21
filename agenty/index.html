@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>С агентами на ты · Курс по ИИ-агентам за 4 недели</title>
+<style>
+  :root{
+    --blue:#2563EB; --blue-d:#1E40AF; --orange:#F26B1B; --dark:#1A1A1A; --gray:#6B7280;
+    --line:#E2E6EF; --tint:#E9EFFF; --bg:#FFFFFF; --soft:#F5F8FF; --ink:#0F1830;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--dark);background:var(--bg);line-height:1.5}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  h1,h2,h3{line-height:1.12;font-weight:800;letter-spacing:-.01em}
+  a{color:inherit;text-decoration:none}
+  .kicker{color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:14px;margin-bottom:14px}
+  .btn{display:inline-block;background:var(--blue);color:#fff;font-weight:800;font-size:18px;padding:16px 34px;border-radius:14px;transition:.15s;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(37,99,235,.35)}
+  .btn.ghost{background:transparent;color:var(--blue);border:2px solid var(--blue)}
+  section{padding:72px 0}
+  .muted{color:var(--gray)}
+  header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:20}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1080px;margin:0 auto}
+  .logo{font-weight:800;font-size:20px}
+  .logo b{color:var(--blue)}
+  .logo i{color:var(--orange);font-style:normal}
+  .nav a.small{font-size:15px;font-weight:700}
+  .hero{background:linear-gradient(180deg,#0F1830,#1B2A52);color:#fff;padding:84px 0 70px;position:relative;overflow:hidden}
+  .hero .kicker{font-size:15px;color:#8FB0FF}
+  .hero h1{font-size:56px;margin-bottom:20px;color:#fff}
+  .hero h1 .accent{color:#5B8CFF}
+  .hero h1 .pop{color:var(--orange)}
+  .hero p.lead{font-size:22px;color:#d7dced;max-width:600px;margin-bottom:32px}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .heroes{display:flex;gap:10px;margin-top:36px;flex-wrap:wrap}
+  .hchip{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:40px;padding:8px 16px;font-weight:700;color:#fff}
+  .mini{width:34px;height:34px;border-radius:50%;object-fit:cover;object-position:top center;display:block}
+  .hero-photo{width:180px;height:180px;border-radius:50%;object-fit:cover;object-position:top center;display:block;margin:0 auto 16px;border:5px solid var(--tint)}
+  .barbig{display:inline-block;width:64px;height:8px;background:var(--orange);border-radius:4px;margin-bottom:22px}
+  .grid{display:grid;gap:20px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px}
+  .card h3{font-size:20px;margin-bottom:8px}
+  .card .n{color:var(--blue);font-weight:800;font-size:15px;margin-bottom:10px}
+  .tariffs{background:var(--soft)}
+  .price{display:grid;gap:22px;grid-template-columns:repeat(3,1fr)}
+  .plan{background:#fff;border:1px solid var(--line);border-radius:20px;padding:30px;display:flex;flex-direction:column}
+  .plan.best{border:2px solid var(--blue);box-shadow:0 12px 30px rgba(37,99,235,.16);position:relative}
+  .plan.best .tag{position:absolute;top:-14px;left:30px;background:var(--orange);color:#fff;font-weight:800;font-size:13px;padding:5px 14px;border-radius:20px}
+  .plan h3{font-size:22px}
+  .plan .amount{font-size:40px;font-weight:800;margin:14px 0 6px}
+  .plan ul{list-style:none;margin:16px 0 24px}
+  .plan li{padding:8px 0 8px 28px;position:relative;color:#333}
+  .plan li:before{content:"✓";position:absolute;left:0;color:var(--blue);font-weight:800}
+  .plan .btn{margin-top:auto;text-align:center}
+  .steps{display:grid;gap:18px;grid-template-columns:repeat(4,1fr)}
+  .step .big{font-size:34px;font-weight:800;color:var(--blue)}
+  .teachers{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .teacher{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}
+  .teacher .role{color:var(--blue);font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.05em}
+  .teacher h3{font-size:24px;margin:6px 0 10px}
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 22px;margin-bottom:12px}
+  .faq summary{font-weight:700;font-size:18px;cursor:pointer;list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq p{margin-top:10px;color:#444}
+  .cta{background:var(--ink);color:#fff;border-radius:24px;padding:56px;text-align:center;margin:0 24px}
+  .cta h2{font-size:40px;margin-bottom:16px}
+  .cta p{color:#c7d0e6;font-size:19px;margin-bottom:28px}
+  footer{padding:40px 0 60px;text-align:center;color:var(--gray);font-size:15px}
+  footer a{color:var(--blue);font-weight:700}
+  @media(max-width:860px){
+    .hero h1{font-size:40px}
+    .g3,.price,.steps,.teachers{grid-template-columns:1fr}
+    .g2{grid-template-columns:1fr}
+    .cta{padding:36px 22px}
+    section{padding:52px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">С <b>агентами</b> <i>на ты</i></div>
+    <div style="display:flex;gap:22px;align-items:center">
+      <a class="small muted" href="#program">Программа</a>
+      <a class="small muted" href="#tariffs">Тарифы</a>
+      <a class="small muted" href="#teachers">Преподаватели</a>
+      <a class="btn" style="padding:10px 20px;font-size:15px" href="#tariffs">Записаться</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <span class="barbig"></span>
+    <div class="kicker">Школа «С нейронками на ты» · курс по ИИ-агентам</div>
+    <h1>ИИ-агенты —<br><span class="accent">работают</span> <span class="pop">за вас</span></h1>
+    <p class="lead">За 4 недели соберите личных цифровых помощников: они отвечают клиентам, ведут рутину, готовят контент и разбирают документы. Без кода — по-человечески.</p>
+    <div class="hero-cta">
+      <a class="btn" href="#tariffs">Записаться на 1 поток</a>
+      <a class="btn ghost" href="#program" style="color:#fff;border-color:#5B8CFF">Программа курса</a>
+    </div>
+    <div class="heroes">
+      <div class="hchip"><img class="mini" src="ivanich.jpg" alt="Иваныч"> Иваныч — техника и агенты</div>
+      <div class="hchip"><img class="mini" src="ksu.jpg" alt="Ксю"> Красотка Ксю — стиль и подача</div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Для кого</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Подойдёт, если вы…</h2>
+    <div class="grid g3">
+      <div class="card"><div class="n">01</div><h3>Предприниматель</h3><p class="muted">Хотите делегировать рутину и общение с клиентами агенту, а не нанимать штат.</p></div>
+      <div class="card"><div class="n">02</div><h3>Эксперт / блогер</h3><p class="muted">Нужен помощник, который отвечает подписчикам, пишет и разбирает материалы 24/7.</p></div>
+      <div class="card"><div class="n">03</div><h3>Руководитель</h3><p class="muted">Хотите автоматизировать процессы: заявки, отчёты, письма — без программистов.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="program" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="kicker">Программа</div>
+    <h2 style="font-size:34px;margin-bottom:10px">8 занятий — от первого агента до своей команды</h2>
+    <p class="muted" style="margin-bottom:32px;font-size:18px">4 недели · Вт и Пт, 19:00–21:00 · 40 мин теории + 40 мин практики · 2 задания к каждой теме</p>
+    <div class="grid g3">
+      <div class="card"><div class="n">Урок 1 · Неделя 1</div><h3>Что такое ИИ-агент</h3><p class="muted">Агент vs чат-бот. Из чего состоит агент. Карта ваших задач под агентов.</p></div>
+      <div class="card"><div class="n">Урок 2</div><h3>Первый агент без кода</h3><p class="muted">Свой Custom GPT на вашей базе знаний за 40 минут.</p></div>
+      <div class="card"><div class="n">Урок 3 · Неделя 2</div><h3>Боты в Telegram</h3><p class="muted">Coze и конструкторы: агент отвечает в мессенджере 24/7.</p></div>
+      <div class="card"><div class="n">Урок 4</div><h3>Агент + Google</h3><p class="muted">Работа с почтой, таблицами и документами. Связки и безопасность.</p></div>
+      <div class="card"><div class="n">Урок 5 · Неделя 3</div><h3>Автоматизация n8n / Make</h3><p class="muted">Агент делает рутину сам: триггер → действия. Первый сценарий.</p></div>
+      <div class="card"><div class="n">Урок 6</div><h3>Агент-продавец</h3><p class="muted">Отвечает клиентам, квалифицирует лиды, ведёт по воронке.</p></div>
+      <div class="card"><div class="n">Урок 7 · Неделя 4</div><h3>Claude Code как агент</h3><p class="muted">Файлы, презентации, посты, переписка — реальная работа на вашем ПК.</p></div>
+      <div class="card"><div class="n">Урок 8</div><h3>Свой агент + выпускной</h3><p class="muted">Собираем агента под вашу задачу. Защита проектов и сертификаты.</p></div>
+      <div class="card" style="background:var(--tint);border-color:var(--tint)"><div class="n">Бонус</div><h3>Инструкции к каждой теме</h3><p class="muted">Пошагово: где и как подключить сервисы для агентов.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">Как проходит</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Живой поток с поддержкой</h2>
+    <div class="steps">
+      <div class="step card"><div class="big">2×</div><h3>в неделю</h3><p class="muted">Вт и Пт, 19:00–21:00, онлайн.</p></div>
+      <div class="step card"><div class="big">40+40</div><h3>теория+практика</h3><p class="muted">Собираем агента прямо на занятии.</p></div>
+      <div class="step card"><div class="big">💬</div><h3>чат и куратор</h3><p class="muted">Разбор домашек и поддержка.</p></div>
+      <div class="step card"><div class="big">🎓</div><h3>проект</h3><p class="muted">Свой агент + сертификат.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--soft)">
+  <div class="wrap">
+    <div class="kicker">Наши герои</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Иваныч и Ксю — ваши проводники</h2>
+    <div class="teachers">
+      <div class="teacher" style="text-align:center">
+        <img src="ivanich.jpg" class="hero-photo" alt="Иваныч">
+        <div class="role">Техника и агенты</div>
+        <h3>Иваныч</h3>
+        <p class="muted">Главный по агентам: промпты, инструменты, автоматизации. Объяснит любую «кнопку» простыми словами.</p>
+      </div>
+      <div class="teacher" style="text-align:center">
+        <img src="ksu.jpg" class="hero-photo" alt="Красотка Ксю">
+        <div class="role">Стиль и подача</div>
+        <h3>Красотка Ксю</h3>
+        <p class="muted">Чтобы ваш агент общался красиво и по-человечески, а контент цеплял.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tariffs" class="tariffs">
+  <div class="wrap">
+    <div class="kicker">Тарифы</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Выберите формат</h2>
+    <div class="price">
+      <div class="plan">
+        <h3>Самостоятельно</h3>
+        <div class="amount">5 000 ₽</div>
+        <div class="muted">Доступ к видеозаписям курса</div>
+        <ul>
+          <li>Все 8 уроков в записи</li>
+          <li>Материалы и инструкции</li>
+          <li>Учитесь в своём темпе</li>
+        </ul>
+        <a class="btn ghost" href="#cta">Выбрать</a>
+      </div>
+      <div class="plan best">
+        <span class="tag">ХИТ · живой поток</span>
+        <h3>С кураторством</h3>
+        <div class="amount">35 000 ₽</div>
+        <div class="muted">Живой поток в группе 10–15 человек</div>
+        <ul>
+          <li>Занятия Вт/Пт 19:00–21:00</li>
+          <li>Разбор домашек куратором</li>
+          <li>Чат потока и поддержка</li>
+          <li>Свой агент + сертификат</li>
+        </ul>
+        <a class="btn" href="#cta">Записаться</a>
+      </div>
+      <div class="plan">
+        <h3>С поддержкой</h3>
+        <div class="amount">10 000 ₽</div>
+        <div class="muted">Видео + ответы на вопросы</div>
+        <ul>
+          <li>Все 8 уроков в записи</li>
+          <li>Ответы на вопросы в чате</li>
+          <li>Материалы и инструкции</li>
+        </ul>
+        <a class="btn ghost" href="#cta">Выбрать</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="teachers">
+  <div class="wrap">
+    <div class="kicker">Преподаватели</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Кто ведёт</h2>
+    <div class="teachers">
+      <div class="teacher">
+        <div class="role">Методология и агенты</div>
+        <h3>Татьяна Маштакова</h3>
+        <p class="muted">Педагог и организатор. Отвечает за методику «просто о сложном», ИИ-агентов, автоматизацию процессов и структуру обучения.</p>
+      </div>
+      <div class="teacher">
+        <div class="role">Визуал и подача</div>
+        <h3>Ксения Соло</h3>
+        <p class="muted">Фотограф и AI-креатор (@KseniaSoloAI). Чтобы ваши агенты и контент выглядели дорого и по-человечески. Лицо школы.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="kicker">Вопросы</div>
+    <h2 style="font-size:34px;margin-bottom:32px">Частые вопросы</h2>
+    <details><summary>Нужно ли уметь программировать?</summary><p>Нет. Все агенты собираются без кода, в визуальных конструкторах. Показываем и делаем вместе на занятии.</p></details>
+    <details><summary>Когда старт?</summary><p>1-й живой поток стартует 5 октября 2026. Группа 10–15 человек. Записаться можно уже сейчас.</p></details>
+    <details><summary>Что я получу в итоге?</summary><p>1–2 работающих ИИ-агента под ваши задачи, понимание, как собирать новых, и сертификат участника.</p></details>
+    <details><summary>Это отдельный курс или часть школы?</summary><p>Это отдельный курс по ИИ-агентам внутри школы «С нейронками на ты». Можно проходить самостоятельно.</p></details>
+    <details><summary>Какие сервисы понадобятся?</summary><p>Custom GPT, Coze, Telegram, Google, n8n/Make, Claude Code. К каждой теме — инструкция по подключению.</p></details>
+  </div>
+</section>
+
+<section id="cta">
+  <div class="cta">
+    <h2>Соберите команду агентов за 4 недели</h2>
+    <p>Старт 1-го потока — 5 октября 2026. Места ограничены: группа 10–15 человек.</p>
+    <a class="btn" href="https://t.me/+zKMenI8RjXw5MzY6">Записаться в Telegram</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Курс «С агентами на ты» · школа «С нейронками на ты» · Ксения Соло и Татьяна Маштакова</p>
+    <p style="margin-top:8px">
+      <a href="https://mashtakova80-max.github.io/neuronkinati/">Основной сайт школы</a>
+    </p>
+    <p class="muted" style="margin-top:14px;font-size:13px">© 2026 · ИИ-агенты — просто о сложном</p>
+  </div>
+</footer>
+
+</body>
+</html>
