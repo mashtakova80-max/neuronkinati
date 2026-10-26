@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Форматы мышления · Татьяна Маштакова — диагностика и наставничество</title>
+<title>Татьяна Маштакова — наставник. Разбор, куда уходят ваши силы</title>
+<meta name="description" content="Вы делаете много, а дело не растёт. Разбираем, какие дела вы делаете не своим способом, и перестраиваем их под ваш формат мышления. Первые 15 минут — бесплатно.">
 <style>
   :root{
     --ink:#1E1B34; --ink2:#2E2A54; --gold:#C79A4E; --gold-d:#A87E36;
@@ -18,7 +19,7 @@
   .btn{display:inline-block;background:var(--gold);color:#1E1B34;font-weight:800;font-size:18px;padding:16px 34px;border-radius:12px;transition:.15s;border:none;cursor:pointer}
   .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(199,154,78,.35)}
   .btn.ghost{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}
-  .btn.dark{background:var(--ink);color:#fff}
+  .btn.line{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
   section{padding:76px 0}
   .muted{color:var(--gray)}
   header{position:sticky;top:0;background:rgba(251,250,247,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:20}
@@ -26,17 +27,31 @@
   .logo{font-weight:800;font-size:19px;letter-spacing:.01em}
   .logo b{color:var(--gold-d)}
   .nav .lnk{font-size:15px;font-weight:600;color:var(--gray)}
-  .hero{background:radial-gradient(1200px 500px at 80% -10%,#3A356A,#1E1B34);color:#fff;padding:96px 0 84px}
+  .navlinks{display:flex;gap:22px;align-items:center;flex-wrap:wrap;justify-content:center}
+  .navbtn{padding:10px 20px;font-size:15px}
+
+  /* ---------- шапка ---------- */
+  .hero{background:radial-gradient(1200px 500px at 80% -10%,#3A356A,#1E1B34);color:#fff;padding:72px 0 76px}
   .hero .kicker{color:var(--gold)}
-  .hero h1{font-size:52px;margin-bottom:22px;color:#fff;max-width:900px}
+  .hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:46px;align-items:start}
+  .hero h1{font-size:50px;margin-bottom:20px;color:#fff}
   .hero h1 .accent{color:var(--gold)}
-  .hero p.lead{font-size:21px;color:#d9d5ea;max-width:640px;margin-bottom:34px}
+  .hero p.lead{font-size:20px;color:#d9d5ea;margin-bottom:34px}
+  .hero-photo img{width:100%;border-radius:20px;display:block;border:1px solid rgba(255,255,255,.18)}
+  .hero-photo .cap{margin-top:14px;color:#c9c5da;font-size:14px;line-height:1.5}
+  .hero-photo .cap b{color:#fff;display:block;font-size:16px;margin-bottom:4px}
+  .twolists{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:32px}
+  .lbox{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:22px}
+  .lbox.out{background:rgba(199,154,78,.12);border-color:rgba(199,154,78,.4)}
+  .lbox .t{color:var(--gold);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+  .lbox ul{list-style:none}
+  .lbox li{padding:6px 0 6px 20px;position:relative;color:#d9d5ea;font-size:15.5px;line-height:1.45}
+  .lbox li:before{content:"·";position:absolute;left:4px;color:var(--gold);font-weight:800}
+  .lbox.out li{color:#f0ead9}
   .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .axes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-  .axis{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:22px}
-  .axis .t{color:var(--gold);font-weight:800;font-size:14px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-  .axis h3{color:#fff;font-size:19px;margin-bottom:6px}
-  .axis p{color:#c9c5da;font-size:15px}
+  .hero .note{color:#9e99b8;font-size:14px;margin-top:14px}
+
+  /* ---------- узнали себя ---------- */
   .grid{display:grid;gap:20px}
   .g2{grid-template-columns:1fr 1fr}
   .g3{grid-template-columns:repeat(3,1fr)}
@@ -45,24 +60,74 @@
   .card ul{list-style:none}
   .card li{padding:7px 0 7px 26px;position:relative;color:#403d55}
   .card li:before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:12px;top:10px}
-  .stars{color:var(--gold);font-size:22px;letter-spacing:3px;margin-bottom:8px}
-  .quote{font-size:19px;font-style:italic;color:#403d55;line-height:1.65;margin:6px 0 16px}
-  .who{font-weight:800;color:var(--ink)}
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
-  .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
-  .step .n{width:38px;height:38px;border-radius:50%;background:var(--ink);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
-  .step h3{font-size:17px;margin-bottom:6px}
-  .step p{font-size:15px;color:var(--gray)}
+  .sit{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px}
+  .sit .q{font-size:18px;font-weight:800;color:var(--ink);line-height:1.35;margin-bottom:10px}
+  .sit p{color:#4a4760;font-size:15.5px}
+  .sit .ans{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);color:var(--gold-d);font-weight:700;font-size:15px}
+
+  /* ---------- кейсы ---------- */
+  .case{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column}
+  .case .who{font-weight:800;color:var(--ink);font-size:17px;margin-bottom:4px}
+  .case .meta{color:var(--gray);font-size:14px;margin-bottom:18px}
+  .case .row{margin-bottom:14px}
+  .case .lab{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);margin-bottom:5px}
+  .case .row p{color:#403d55;font-size:15.5px;line-height:1.5}
+  .case .row.todo p{color:#b03a3a;background:#fff4f4;border:1px dashed #e0a6a6;border-radius:8px;padding:8px 10px;font-size:14.5px}
+  .tag{display:inline-block;align-self:flex-start;background:var(--soft);border:1px solid var(--line);color:var(--gray);font-size:12px;font-weight:700;border-radius:999px;padding:4px 12px;margin-top:auto}
+  .tag.live{background:#f0f7f2;border-color:#bfe0cd;color:#2d7a50}
+
+  /* ---------- программа ---------- */
+  .prog{background:#fff;border:1px solid var(--line);border-radius:20px;padding:34px;margin-bottom:22px}
+  .prog .head{display:flex;justify-content:space-between;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:8px}
+  .prog h3{font-size:25px}
+  .prog .price{color:var(--gold-d);font-weight:800;font-size:23px}
+  .prog .for{color:var(--gray);font-size:16px;margin-bottom:22px}
+  .tl{list-style:none;border-left:2px solid var(--line);padding-left:0;margin-bottom:22px}
+  .tl li{position:relative;padding:0 0 20px 26px;margin-left:8px}
+  .tl li:last-child{padding-bottom:0}
+  .tl li:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--paper)}
+  .tl .d{font-weight:800;color:var(--ink);font-size:16px;margin-bottom:3px}
+  .tl .x{color:#4a4760;font-size:15.5px;line-height:1.5}
+  .outcome{background:var(--soft);border-radius:14px;padding:18px 22px}
+  .outcome .lab{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-d);margin-bottom:8px}
+  .outcome ul{list-style:none}
+  .outcome li{padding:5px 0 5px 24px;position:relative;color:#403d55;font-size:15.5px}
+  .outcome li:before{content:"✓";position:absolute;left:0;color:var(--gold-d);font-weight:800}
+
+  /* ---------- обо мне ---------- */
+  .expert{display:grid;grid-template-columns:330px 1fr;gap:40px;align-items:start}
+  .expert img{width:100%;border-radius:20px;display:block;border:1px solid var(--line)}
+  .expert h2{font-size:34px;margin-bottom:16px}
+  .expert p{color:#403d55;font-size:17px;margin-bottom:13px}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+  .fact{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+  .fact .n{font-size:27px;font-weight:800;color:var(--gold-d);line-height:1.1;margin-bottom:5px}
+  .fact .x{font-size:14px;color:var(--gray);line-height:1.4}
+  blockquote{border-left:3px solid var(--gold);padding-left:18px;margin-top:22px;font-style:italic;color:#403d55;font-size:17px}
+
+  /* ---------- цены ---------- */
   .services{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
   .svc{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;display:flex;flex-direction:column}
+  .svc.hi{border:2px solid var(--gold);box-shadow:0 10px 30px rgba(199,154,78,.14)}
+  .svc .badge{display:inline-block;background:var(--gold);color:var(--ink);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 12px;margin-bottom:12px;align-self:flex-start}
   .svc h3{font-size:21px;margin-bottom:8px}
   .svc .price{color:var(--gold-d);font-weight:800;font-size:22px;margin:10px 0}
   .svc p{color:var(--gray);margin-bottom:18px}
   .svc .btn{margin-top:auto;align-self:flex-start;font-size:16px;padding:13px 26px}
-  .expert{display:grid;grid-template-columns:320px 1fr;gap:36px;align-items:center}
-  .expert img{width:100%;border-radius:20px;display:block;border:1px solid var(--line)}
-  .expert h2{font-size:32px;margin-bottom:14px}
-  .expert p{color:#403d55;font-size:17px;margin-bottom:12px}
+
+  /* ---------- отзывы ---------- */
+  .stars{color:var(--gold);font-size:22px;letter-spacing:3px;margin-bottom:8px}
+  .quote{font-size:18px;font-style:italic;color:#403d55;line-height:1.65;margin:6px 0 16px}
+  .who{font-weight:800;color:var(--ink)}
+
+  /* ---------- метод ---------- */
+  .axes{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:26px}
+  .axis{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px}
+  .axis .t{color:var(--gold-d);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+  .axis h3{font-size:19px;margin-bottom:8px}
+  .axis p{color:#4a4760;font-size:15.5px}
+  .axis .vals{margin-top:12px;color:var(--gray);font-size:14.5px}
+
   .book{background:var(--ink);color:#fff;border-radius:24px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
   .book h2{font-size:32px;color:#fff;margin-bottom:14px}
   .book h2 .accent{color:var(--gold)}
@@ -78,15 +143,28 @@
   .cta h2{font-size:38px;margin-bottom:16px}
   .cta h2 .accent{color:var(--gold)}
   .cta p{color:#cfcbe2;font-size:19px;margin-bottom:28px}
+  .cta .note{color:#9e99b8;font-size:14px;margin-top:16px}
   footer{padding:44px 0 64px;text-align:center;color:var(--gray);font-size:15px}
   footer a{color:var(--gold-d);font-weight:700}
-  .sub{color:var(--gray);font-size:18px;margin-bottom:34px;max-width:720px}
+  .sub{color:var(--gray);font-size:18px;margin-bottom:34px;max-width:760px}
+
   @media(max-width:880px){
-    .hero h1{font-size:36px}
-    .axes,.g2,.g3,.steps,.services{grid-template-columns:1fr}
+    .hero h1{font-size:34px}
+    .hero-grid{grid-template-columns:1fr;gap:30px}
+    .hero-photo{max-width:340px;margin:0 auto}
+    .twolists,.axes,.g2,.g3,.services{grid-template-columns:1fr}
     .expert,.book{grid-template-columns:1fr}
-    .cta,.book{padding:34px 22px}
+    .cta,.book,.prog{padding:30px 22px}
     section{padding:54px 0}
+    .facts{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:700px){
+    .nav{flex-wrap:wrap;justify-content:center;gap:8px;padding:12px 12px}
+    .nav .logo{width:100%;text-align:center;font-size:16px;line-height:1.3}
+    .navlinks{width:100%;min-width:0;gap:10px;row-gap:8px}
+    .nav .lnk{font-size:14px}
+    .navbtn{padding:9px 16px;font-size:14px}
+    .facts{grid-template-columns:1fr}
   }
 </style>
 </head>
@@ -94,184 +172,455 @@
 
 <header>
   <div class="nav">
-    <div class="logo">Форматы <b>мышления</b> · Татьяна Маштакова</div>
-    <div style="display:flex;gap:22px;align-items:center">
-      <a class="lnk" href="#about">Об эксперте</a>
-      <a class="lnk" href="#services">Услуги</a>
-      <a class="btn" style="padding:10px 20px;font-size:15px" href="#cta">Записаться</a>
+    <div class="logo">Татьяна <b>Маштакова</b> · наставник</div>
+    <div class="navlinks">
+      <a class="lnk" href="#cases">Кейсы</a>
+      <a class="lnk" href="#programs">Программы</a>
+      <a class="lnk" href="#about">Обо мне</a>
+      <a class="btn navbtn" href="https://t.me/formatmind_bot">15 минут ясности</a>
     </div>
   </div>
 </header>
 
+<!-- ======================= ШАПКА ======================= -->
 <div class="hero">
   <div class="wrap">
-    <div class="kicker">Татьяна Маштакова · эксперт по форматам мышления</div>
-    <h1>Узнайте свой <span class="accent">формат мышления</span> — и принимайте сильные решения</h1>
-    <p class="lead">Диагностика по научному методу «Формат мышления» и разбор с наставником. Вы поймёте, как вы думаете, в чём ваша сила и как выстроить дело, отношения и команду под свой тип.</p>
-    <div class="hero-cta">
-      <a class="btn" href="#cta">Записаться на диагностику</a>
-      <a class="btn ghost" href="https://t.me/mindmenter">Telegram-канал</a>
-    </div>
-    <div class="axes">
-      <div class="axis"><div class="t">01 · Объём</div><h3>Я · Мы · Мир</h3><p>Какой масштаб информации вам комфортен — от личного до глобального.</p></div>
-      <div class="axis"><div class="t">02 · Скорость</div><h3>Мыслитель ↔ Деятель</h3><p>Как быстро вы принимаете решения — по наитию или после анализа.</p></div>
-      <div class="axis"><div class="t">03 · Структурность</div><h3>Система ↔ Анализ</h3><p>Собираете картину в целое или раскладываете на детали.</p></div>
+    <div class="hero-grid">
+      <div>
+        <div class="kicker">Татьяна Маштакова · 25 лет в образовании</div>
+        <h1>Вы работаете на износ, <span class="accent">а дело не растёт</span></h1>
+        <p class="lead">Чаще всего причина не в лени и не в тайм-менеджменте. Половину задач вы делаете не своим способом — и они забирают втрое больше сил, чем должны. Я нахожу, какие именно, и помогаю их переставить.</p>
+
+        <div class="twolists">
+          <div class="lbox">
+            <div class="t">Приходят с этим</div>
+            <ul>
+              <li>«Делаю много, а будто не своё»</li>
+              <li>«Работаю по 12 часов, а дело стоит»</li>
+              <li>«Всё тащу сама и боюсь делегировать»</li>
+              <li>«В голове есть метод — не могу его оформить и продать»</li>
+              <li>«Ребёнок заканчивает школу и не знает, куда идти»</li>
+              <li>«Упёрлась в потолок и не понимаю, куда тратить силы»</li>
+            </ul>
+          </div>
+          <div class="lbox out">
+            <div class="t">Уходят с этим</div>
+            <ul>
+              <li>Карта вашего мышления: чем вы сильны и чем за это платите</li>
+              <li>Список дел, которые вам нельзя делать самой</li>
+              <li>Понимание, где именно утекает день</li>
+              <li>План на два месяца под ваш способ думать</li>
+              <li>Язык, на котором с вами стоит говорить команде и семье</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="hero-cta">
+          <a class="btn" href="https://t.me/formatmind_bot">15 минут ясности — бесплатно</a>
+          <a class="btn ghost" href="#cases">Сначала посмотреть кейсы</a>
+        </div>
+        <div class="note">Разбираем одну вашу задачу. Без презентаций и продажи «в лоб».</div>
+      </div>
+
+      <div class="hero-photo">
+        <img src="tatyana-foto.jpg" alt="Татьяна Маштакова">
+        <div class="cap">
+          <b>Татьяна Маштакова</b>
+          Педагог и наставник, 25 лет в образовании. Основатель частной школы «Клуб РЕЛЕ». Автор книги «Качество мышления».
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<section id="about-method">
+<!-- ======================= УЗНАЛИ СЕБЯ ======================= -->
+<section id="you">
   <div class="wrap">
-    <div class="kicker">Что это</div>
-    <h2 style="font-size:34px;margin-bottom:14px">Формат мышления — это карта вашей силы, а не ярлык</h2>
-    <p class="sub">На пересечении трёх шкал рождается <b>27 форматов мышления</b>. Метод основан на исследованиях, психометрическом тесте и запатентован (метод А. Лямина, №2626248). Это не гадание — это про то, как устроено именно ваше мышление.</p>
+    <div class="kicker">Узнали себя?</div>
+    <h2 style="font-size:34px;margin-bottom:12px">Шесть ситуаций, с которыми ко мне приходят чаще всего</h2>
+    <p class="sub">Если хотя бы одна — про вас, нам есть о чём поговорить. Если ни одна — честно скажу об этом на первой встрече.</p>
+
+    <div class="grid g3">
+      <div class="sit">
+        <div class="q">«Я делаю много, а ощущение — будто не своё»</div>
+        <p>Дела закрыты, список вычеркнут, а внутри пусто. Обычно это значит, что вы живёте в чужом формате: делаете задачи способом, который вам не родной.</p>
+        <div class="ans">→ Находим, какие дела вас обесточивают</div>
+      </div>
+      <div class="sit">
+        <div class="q">«Работаю по 12 часов, а дело стоит»</div>
+        <p>Времени нет ни на что, при этом результат не растёт. Дневник времени почти всегда показывает: половина часов уходит на то, что вы вообще не должны делать.</p>
+        <div class="ans">→ Разбираем, куда реально уходит день</div>
+      </div>
+      <div class="sit">
+        <div class="q">«Всё тащу сама, делегировать страшно»</div>
+        <p>Передаёте людям — возвращается хуже, чем сделали бы сами. Чаще всего дело не в людях, а в том, что задачу отдали человеку другого формата мышления.</p>
+        <div class="ans">→ Собираем, кому что можно отдать</div>
+      </div>
+      <div class="sit">
+        <div class="q">«У меня в голове метод, но я не могу его продать»</div>
+        <p>Вы знаете, как помогать людям, а объяснить это словами и упаковать в продукт не получается. Текст выходит про метод, а не про результат клиента.</p>
+        <div class="ans">→ Вытаскиваем метод наружу и оформляем</div>
+      </div>
+      <div class="sit">
+        <div class="q">«Ребёнок заканчивает школу и не знает, куда идти»</div>
+        <p>Выбор «куда поступать» делается по престижу вуза или по тому, что сказали родители. А не по тому, как ребёнок на самом деле думает и где ему будет легко.</p>
+        <div class="ans">→ Профориентация по формату мышления</div>
+      </div>
+      <div class="sit">
+        <div class="q">«Упёрлась в потолок и не понимаю, куда тратить силы»</div>
+        <p>Оборот стоит на одной цифре несколько месяцев. Идей много, вы беретесь за всё подряд — и ни одна не доходит до денег.</p>
+        <div class="ans">→ Выбираем одну стратегию и отсекаем лишнее</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= КЕЙСЫ ======================= -->
+<section id="cases" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="kicker">Кейсы</div>
+    <h2 style="font-size:34px;margin-bottom:12px">С чем приходили и что изменилось</h2>
+    <p class="sub">Детали — с согласия клиентов.</p>
+
     <div class="grid g2">
-      <div class="card">
-        <h3>Для себя</h3>
-        <ul>
-          <li>Найти дело по себе и реализовать потенциал</li>
-          <li>Понять свою мотивацию и сильные стороны</li>
-          <li>Улучшить отношения в семье и с близкими</li>
-          <li>Выстроить успешные коммуникации</li>
-          <li>Принимать решения без вечных сомнений</li>
-        </ul>
+
+      <div class="case">
+        <div class="who">Владелица салона красоты</div>
+        <div class="meta">Петербург · оборот 1,2–1,8 млн ₽ в месяц</div>
+        <div class="row">
+          <div class="lab">Было</div>
+          <p>Салон работает, деньги есть, но всё держится на ней одной: администраторы, соцсети, юрвопросы, закупки. На себя времени не остаётся совсем. Ребрендинг начат и брошен — на картах одно название, в соцсетях другое.</p>
+        </div>
+        <div class="row">
+          <div class="lab">Что делали</div>
+          <p>Определили формат мышления: объём «Мы», тип — системный-презентатор. Разложили работу на четыре блока: люди и её время, бизнес-тренерство, применение таланта, личное. Собрали дневник времени. Отдельно разобрали, почему салона не видно в поиске: у конкурентов 2–3 рубрики на карточке, у неё одна — салон не показывался в 8 запросах из 12.</p>
+        </div>
+        <div class="row">
+          <div class="lab">Что меняется</div>
+          <p>Дневник времени показал главного пожирателя — маркетинговую рутину. Сейчас переводим работу с тремя специалистами на ИИ-агентов и полную автоматизацию. По расчёту это освобождает около половины её рабочего времени. И это время уходит не в новые задачи, а туда, где она сильна по формату: на людей, развитие и то, что умеет только она.</p>
+        </div>
+        <span class="tag live">В работе сейчас</span>
       </div>
-      <div class="card">
-        <h3>Для бизнеса и команды</h3>
-        <ul>
-          <li>Собрать команду под конкретные задачи</li>
-          <li>Увидеть психологический климат и уровень коммуникации</li>
-          <li>Заметить, кто рискует покинуть команду</li>
-          <li>Связать гармонию в команде и выручку</li>
-          <li>Управлять эффективнее — с учётом типов людей</li>
-        </ul>
+
+      <div class="case">
+        <div class="who">Студентка, а теперь журналист</div>
+        <div class="meta">Работаем вместе 2 года</div>
+        <div class="row">
+          <div class="lab">Было</div>
+          <p>Пришла за скорочтением — казалось, что проблема в скорости: не успевает прочитать и запомнить объём, который требует университет.</p>
+        </div>
+        <div class="row">
+          <div class="lab">Что делали</div>
+          <p>Начали со скорочтения, дальше перешли к умению учиться: как работать с материалом так, как устроено её мышление, а не так, как «принято». Когда стало видно её формат, выяснилось главное — выбранная экономика ей не подходила совсем. Разобрали, какая профессия ближе к её способу думать.</p>
+        </div>
+        <div class="row">
+          <div class="lab">Стало</div>
+          <p>Сменила направление и сейчас работает в журналистике — в профессии, которая совпадает с её форматом мышления. Два года спустя мы по-прежнему работаем вместе.</p>
+        </div>
+        <span class="tag">Долгое сопровождение</span>
       </div>
+
     </div>
   </div>
 </section>
 
-<section style="background:var(--soft)">
+<!-- ======================= ПРОГРАММЫ ======================= -->
+<section id="programs">
   <div class="wrap">
-    <div class="kicker">Как проходит</div>
-    <h2 style="font-size:34px;margin-bottom:32px">4 шага к пониманию себя</h2>
-    <div class="steps">
-      <div class="step"><div class="n">1</div><h3>Диагностика</h3><p>Психометрический тест — отвечаете на вопросы онлайн.</p></div>
-      <div class="step"><div class="n">2</div><h3>Расшифровка</h3><p>Определяем ваш формат мышления из 27 типов.</p></div>
-      <div class="step"><div class="n">3</div><h3>Разбор с Татьяной</h3><p>Личная встреча: сильные стороны, зоны роста, решения.</p></div>
-      <div class="step"><div class="n">4</div><h3>Рекомендации</h3><p>Персональные шаги под ваш тип — жизнь, дело, отношения.</p></div>
-    </div>
-  </div>
-</section>
+    <div class="kicker">Что происходит в работе</div>
+    <h2 style="font-size:34px;margin-bottom:12px">Не «сессии», а конкретные шаги</h2>
+    <p class="sub">Чтобы вы понимали, за что платите и что будет происходить по дням.</p>
 
-<section id="services">
-  <div class="wrap">
-    <div class="kicker">Услуги</div>
-    <h2 style="font-size:34px;margin-bottom:32px">Форматы работы</h2>
-    <div class="services">
-      <div class="svc">
-        <h3>Разбор «Куда уходит время»</h3>
-        <div class="price">3 000 ₽</div>
-        <p>Групповая встреча 1,5 часа. Разбираем ваш список дел: что убрать, что передать и чем заправляться именно вам — с учётом вашего формата мышления.</p>
-        <a class="btn" href="#cta">Записаться</a>
-      </div>
-      <div class="svc">
+    <div class="prog">
+      <div class="head">
         <h3>Две недели со мной</h3>
         <div class="price">15 000 ₽</div>
-        <p>Личное сопровождение 14 дней. Начинаем с диагностики формата мышления, дальше разбираем, где уходят силы, и перестраиваем дела под ваш формат.</p>
-        <a class="btn" href="#cta">Записаться</a>
       </div>
-      <div class="svc">
-        <h3>Семейная диагностика</h3>
-        <div class="price">10 000 ₽</div>
-        <p>Форматы мышления партнёров/детей: как вы думаете по-разному и как выстроить понимание и гармонию.</p>
-        <a class="btn" href="#cta">Записаться</a>
+      <div class="for">Если вы на износе и нужно быстро понять, что убрать, а что оставить. С этого начинают почти все.</div>
+      <ul class="tl">
+        <li>
+          <div class="d">День 1 — диагностика</div>
+          <div class="x">Тест на 152 вопроса, около 25 минут онлайн. На выходе — ваша карта мышления: объём, тип и то, насколько вы сейчас живёте в своём формате или в навязанном.</div>
+        </li>
+        <li>
+          <div class="d">Дни 2–3 — разбор карты</div>
+          <div class="x">Личная встреча. Разбираем, что каждая шкала означает конкретно для вашей жизни: почему одни задачи идут легко, а другие вы откладываете месяцами.</div>
+        </li>
+        <li>
+          <div class="d">Дни 4–7 — дневник времени</div>
+          <div class="x">Вы фиксируете, на что реально уходит день. Я смотрю, где вы работаете не своим способом. Здесь обычно и находится потерянная половина суток.</div>
+        </li>
+        <li>
+          <div class="d">Дни 8–11 — пересборка дел</div>
+          <div class="x">Делим список на три части: что убрать совсем, что передать другому человеку, что оставить себе. Разбираем, кому именно передавать — с учётом формата мышления этих людей.</div>
+        </li>
+        <li>
+          <div class="d">Дни 12–14 — план и опора</div>
+          <div class="x">Собираем план на ближайшие два месяца под ваш формат. Отдельно — чем вы заправляетесь: что именно возвращает силы вам, а не «людям вообще».</div>
+        </li>
+      </ul>
+      <div class="outcome">
+        <div class="lab">На выходе у вас на руках</div>
+        <ul>
+          <li>Карта формата мышления с расшифровкой</li>
+          <li>Дневник времени с разметкой, где уходят силы</li>
+          <li>Список дел, которые вам нельзя делать самой</li>
+          <li>План на два месяца и первые три шага на эту неделю</li>
+        </ul>
       </div>
-      <div class="svc">
-        <h3>Командная / бизнес-диагностика</h3>
-        <div class="price">от 45 000 ₽</div>
-        <p>Карта форматов команды, климат, риски ухода, роли под задачи. Отчёт и стратегическая сессия.</p>
-        <a class="btn" href="#cta">Обсудить</a>
-      </div>
-      <div class="svc">
-        <h3>Система формата мышления</h3>
-        <div class="price">60 000 / 90 000 ₽</div>
-        <p>Два месяца сопровождения: в группе — 60 000 ₽, индивидуально — 90 000 ₽. Для тех, кто уже прошёл две недели и хочет перестроить дело целиком.</p>
-        <a class="btn" href="#cta">Записаться</a>
-      </div>
+      <div style="margin-top:22px"><a class="btn" href="https://t.me/MashtakovaTA">Записаться на две недели</a></div>
     </div>
+
+    <div class="prog">
+      <div class="head">
+        <h3>Система формата мышления · 2 месяца</h3>
+        <div class="price">60 000 ₽ в группе · 90 000 ₽ лично</div>
+      </div>
+      <div class="for">Для тех, кто прошёл две недели и хочет перестроить не дела, а дело целиком. Беру только после первой программы — иначе не на что опираться.</div>
+      <ul class="tl">
+        <li>
+          <div class="d">Месяц 1 — ваш формат</div>
+          <div class="x">Глубоко разбираем, как вы принимаете решения, где вы сильны и где проваливаетесь из раза в раз. Смотрим на историю: какие решения вы приняли из своей силы, а какие — потому что «так правильно».</div>
+        </li>
+        <li>
+          <div class="d">Месяц 1 — люди вокруг</div>
+          <div class="x">Карта форматов вашей команды и семьи. Кто с вами на одном языке, кто на другом, где из-за этого постоянно искрит и кто рискует уйти.</div>
+        </li>
+        <li>
+          <div class="d">Месяц 2 — стратегия</div>
+          <div class="x">Из разрозненных идей собираем одну линию: куда вы идёте и чем за это платите. Отсекаем то, что вам не по формату, каким бы прибыльным оно ни казалось со стороны.</div>
+        </li>
+        <li>
+          <div class="d">Месяц 2 — упаковка и деньги</div>
+          <div class="x">Если у вас есть метод или продукт — вынимаем его наружу и оформляем так, чтобы его можно было объяснить за минуту и продать. Считаем, на чём вы зарабатываете, а что держите по привычке.</div>
+        </li>
+      </ul>
+      <div class="outcome">
+        <div class="lab">На выходе у вас на руках</div>
+        <ul>
+          <li>Стратегия на ближайшие годы, собранная под ваш способ думать</li>
+          <li>Карта форматов команды и понимание, кого куда ставить</li>
+          <li>Описанный метод или продукт — словами, которые понимает клиент</li>
+          <li>Еженедельные разборы со мной все два месяца</li>
+        </ul>
+      </div>
+      <div style="margin-top:22px"><a class="btn line" href="https://t.me/MashtakovaTA">Обсудить участие</a></div>
+    </div>
+
   </div>
 </section>
 
+<!-- ======================= ОБО МНЕ ======================= -->
 <section id="about" style="background:var(--soft)">
   <div class="wrap">
     <div class="expert">
-      <img src="tatyana.jpg" alt="Татьяна Маштакова">
+      <img src="tatyana-foto.jpg" alt="Татьяна Маштакова">
       <div>
-        <div class="kicker">Об эксперте</div>
+        <div class="kicker">Кто с вами работает</div>
         <h2>Татьяна Маштакова</h2>
-        <p>Педагог, наставник и организатор образовательных проектов. Основатель «Разумного наставничества». Работает с научным методом «Формат мышления».</p>
-        <p>Автор книги-исследования <b>«Качество мышления. Четыре формата мышления»</b> — о том, как мы думаем и принимаем решения. Помогает людям и командам увидеть свой способ мышления и превратить его в силу.</p>
-        <p class="muted">«Ваш формат мышления — не диагноз. Это способ понять себя и начать принимать решения из своей силы».</p>
+        <p>Двадцать пять лет в образовании. Начинала учителем информатики в сельской школе под Калининградом, дошла до завуча по инновациям, работала в команде «Школы будущего» Алексея Голубицкого, создала Всероссийскую олимпиаду по 3D-технологиям. Потом Петербург и должность завуча по учебно-воспитательной работе в государственной школе.</p>
+        <p>В 2021 году открыла свою — «Клуб РЕЛЕ». Пространство на 400 метров без классов и звонков, разновозрастная группа, профориентация с 12 лет через формат мышления, тестируем всю семью. Руковожу ей до сих пор. Это значит, что я не теоретик: я каждый день вижу, как разные люди думают по-разному и что из этого получается.</p>
+        <p>С методом «Формат мышления» работаю с 2014 года — познакомилась с ним и с его автором Александром Ляминым ещё в «Школе будущего». Написала книгу-исследование «Качество мышления. Четыре формата мышления». Сейчас учусь в аспирантуре ЛГУ им. Пушкина по педагогике и собираю на базе метода платформу тестирования.</p>
+
+        <div class="facts">
+          <div class="fact"><div class="n">25 лет</div><div class="x">в образовании: учитель, завуч, основатель своей школы</div></div>
+          <div class="fact"><div class="n">с 2014</div><div class="x">работаю с методом «Формат мышления»</div></div>
+          <div class="fact"><div class="n">5</div><div class="x">высших образований, один диплом красный</div></div>
+          <div class="fact"><div class="n">152</div><div class="x">вопроса в диагностике — не десять и не «угадайка»</div></div>
+          <div class="fact"><div class="n">27</div><div class="x">форматов мышления — у каждого своя карточка</div></div>
+          <div class="fact"><div class="n">Патент</div><div class="x">метод защищён патентом №2626248 (А. Лямин)</div></div>
+          <div class="fact"><div class="n">Книга</div><div class="x">«Качество мышления» — издана и в продаже</div></div>
+          <div class="fact"><div class="n">Школа</div><div class="x">«Клуб РЕЛЕ» — своё образовательное учреждение</div></div>
+          <div class="fact"><div class="n">Олимпиада</div><div class="x">создала Всероссийскую олимпиаду по 3D-технологиям</div></div>
+        </div>
+
+        <blockquote>«Ваш формат мышления — не диагноз. Это способ понять себя и начать принимать решения из своей силы».</blockquote>
       </div>
     </div>
   </div>
 </section>
 
-<section>
+<!-- ======================= ЦЕНЫ ======================= -->
+<section id="services">
+  <div class="wrap">
+    <div class="kicker">Сколько стоит</div>
+    <h2 style="font-size:34px;margin-bottom:12px">Форматы работы</h2>
+    <p class="sub">Начать можно бесплатно — с пятнадцати минут. Дальше вы сами решите, нужно ли вам дальше.</p>
+
+    <div class="services">
+      <div class="svc hi">
+        <span class="badge">С этого начинают</span>
+        <h3>15 минут ясности</h3>
+        <div class="price">Бесплатно</div>
+        <p>Разбираем одну вашу задачу. Вы приходите с вопросом, который крутится в голове, и уходите с пониманием, что с ним делать.</p>
+        <a class="btn" href="https://t.me/formatmind_bot">Записаться</a>
+      </div>
+
+      <div class="svc">
+        <h3>Разбор «Куда уходит время»</h3>
+        <div class="price">3 000 ₽</div>
+        <p>Групповая встреча на 1,5 часа. Разбираем ваш список дел: что убрать, что передать и чем заправляться именно вам — с учётом вашего формата мышления.</p>
+        <a class="btn line" href="https://t.me/MashtakovaTA">Записаться</a>
+      </div>
+
+      <div class="svc">
+        <h3>Две недели со мной</h3>
+        <div class="price">15 000 ₽</div>
+        <p>Личное сопровождение 14 дней: диагностика, дневник времени, пересборка дел и план на два месяца. Подробно расписано <a href="#programs" style="color:var(--gold-d);font-weight:700">выше</a>.</p>
+        <a class="btn line" href="https://t.me/MashtakovaTA">Записаться</a>
+      </div>
+
+      <div class="svc">
+        <h3>Профориентация для подростка</h3>
+        <div class="price">10 000 ₽ · 15 000 ₽ с подбором вуза</div>
+        <p>Диагностика формата мышления ребёнка и разбор с ним и с вами: что ему будет даваться легко, а где он будет выгорать. За 15 000 ₽ — плюс подбор вуза и профиля обучения.</p>
+        <a class="btn line" href="https://t.me/MashtakovaTA">Записаться</a>
+      </div>
+
+      <div class="svc">
+        <h3>Семейная диагностика</h3>
+        <div class="price">10 000 ₽</div>
+        <p>Форматы мышления партнёров и детей рядом: почему вы говорите об одном и не слышите друг друга и на каком языке разговаривать, чтобы доходило.</p>
+        <a class="btn line" href="https://t.me/MashtakovaTA">Записаться</a>
+      </div>
+
+      <div class="svc">
+        <h3>Командная диагностика</h3>
+        <div class="price">от 45 000 ₽</div>
+        <p>Карта форматов всей команды: кто на каком месте уместен, где проседает климат, кто рискует уйти. Отчёт и стратегическая сессия с руководителем.</p>
+        <a class="btn line" href="https://t.me/MashtakovaTA">Обсудить</a>
+      </div>
+
+      <div class="svc">
+        <h3>Система формата мышления</h3>
+        <div class="price">60 000 ₽ в группе · 90 000 ₽ лично</div>
+        <p>Два месяца: формат, люди, стратегия, упаковка. Только для тех, кто уже прошёл две недели. Расписано <a href="#programs" style="color:var(--gold-d);font-weight:700">выше</a>.</p>
+        <a class="btn line" href="https://t.me/MashtakovaTA">Обсудить</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= ОТЗЫВЫ ======================= -->
+<section style="background:var(--soft)">
+  <div class="wrap">
+    <div class="kicker">Отзывы</div>
+    <h2 style="font-size:34px;margin-bottom:30px">Что говорят те, кто уже работал</h2>
+    <div style="max-width:760px">
+      <div class="card">
+        <div class="stars">★★★★★</div>
+        <p class="quote">«Татьяна Анатольевна — это подарок Бога. Талантливая, многогранная, ответственная, пунктуальная, позитивная, энергичная, терпеливая, мягкая, знающая всё))) Если жизнь свела Вас с Татьяной Анатольевной, вы точно счастливчик судьбы — и вас ждут радикальные изменения (при условии, что вы тоже много работаете, а не ждёте магии от занятий). Мы работаем уже два года, и какой бы у меня ни был вопрос, я в первую очередь обращусь к Татьяне: знания и практику, связанную с работой мозга и мышления, доступнее и интереснее не передаст никто другой. Я всегда получаю именно то, за чем обращаюсь, и даже больше. Спасибо Вам огромное ❤️»</p>
+        <div class="who">— работаем вместе 2 года</div>
+      </div>
+      <!-- Таня: когда соберём скриншоты отзывов (Вера, Лариса, ВК, МАКС) — вернуть сюда сетку grid g2
+           и добавлять карточки вида: <div class="card"><img src="otzyv-vera.png" style="width:100%;border-radius:12px"></div> -->
+    </div>
+  </div>
+</section>
+
+<!-- ======================= МЕТОД ======================= -->
+<section id="method">
+  <div class="wrap">
+    <div class="kicker">Как это устроено</div>
+    <h2 style="font-size:34px;margin-bottom:12px">Через что я работаю</h2>
+    <p class="sub">Этот блок — для тех, кому важно понимать механику. Если вам достаточно результата, можете его пропустить.</p>
+
+    <div class="card">
+      <h3 style="font-size:22px;margin-bottom:14px">Формат мышления — это не ярлык, а карта</h3>
+      <p style="color:#403d55;font-size:16.5px;margin-bottom:10px">Метод «Формат мышления» описывает не характер и не темперамент, а то, <b>как вы обрабатываете информацию и принимаете решения</b>. Он построен на психометрическом тесте и запатентован (метод А. Лямина, патент №2626248). Диагностика — 152 вопроса, около 25 минут.</p>
+      <p style="color:#403d55;font-size:16.5px">Карта строится по двум шкалам. На их пересечении получается 27 форматов — чистых и смешанных. У каждого есть своя карточка: сильные и слабые стороны, подходящая среда и профессии.</p>
+
+      <div class="axes">
+        <div class="axis">
+          <div class="t">Шкала 1 · Объём</div>
+          <h3>Я · Мы · Мир</h3>
+          <p>Какой масштаб вам комфортен. Один человек живёт задачами своей жизни, другой мыслит командой, третий не может работать, если не видит, как это меняет мир целиком.</p>
+          <div class="vals">Я → Мы → Мир</div>
+        </div>
+        <div class="axis">
+          <div class="t">Шкала 2 · Тип</div>
+          <h3>Как вы обходитесь с информацией</h3>
+          <p>Собираете в систему, объясняете и зажигаете, раскладываете на детали или мыслите образами. Чистых типов мало — чаще человек стоит между двумя соседними.</p>
+          <div class="vals">Системщик · Презентатор · Аналитик · Метафорщик</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:22px">
+      <div class="card">
+        <h3>Что это даёт вам лично</h3>
+        <ul>
+          <li>Понять, какие дела вас обесточивают, а какие заряжают</li>
+          <li>Перестать заставлять себя работать чужим способом</li>
+          <li>Выбрать дело и среду, где вы сильны по умолчанию</li>
+          <li>Принимать решения без вечных сомнений и откатов</li>
+          <li>Понять, почему близкие вас не слышат, и говорить иначе</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Что это даёт в команде</h3>
+        <ul>
+          <li>Ставить людей на места, где они дают результат</li>
+          <li>Видеть, кто выгорает и кто уже собрался уходить</li>
+          <li>Понять, почему одни и те же задачи стопорятся</li>
+          <li>Собрать команду под задачу, а не «по людям, которые есть»</li>
+          <li>Связать климат в команде и выручку</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= КНИГА ======================= -->
+<section style="background:var(--soft)">
   <div class="wrap">
     <div class="book">
       <div>
         <div class="kicker" style="color:var(--gold)">Книга</div>
         <h2>«Качество <span class="accent">мышления</span>»</h2>
         <p>Книга-исследование о том, как мы думаем и принимаем решения. Через историю героини Анны и четыре формата мышления — приглашение не поставить себе диагноз, а научиться замечать собственный способ думать.</p>
-        <a class="btn" href="#cta">Получить книгу</a>
+        <a class="btn" href="https://t.me/MashtakovaTA">Получить книгу</a>
       </div>
+      <!-- Таня: сюда просится фото настоящей книги в руках вместо нарисованной обложки.
+           Заменить этот блок на <img src="kniga.jpg" style="width:100%;border-radius:16px"> -->
       <div class="cover">
         <div class="small">Татьяна Маштакова</div>
         <div class="bt">Качество мышления</div>
-        <div style="color:#cfcbe2;font-size:15px">Четыре формата мышления ◆ Как мы думаем и принимаем решения</div>
+        <div class="small" style="color:#cfcbe2;text-transform:none;letter-spacing:0;font-weight:400">Четыре формата мышления ◆ Как мы думаем и принимаем решения</div>
       </div>
     </div>
   </div>
 </section>
 
-<section>
-  <div class="wrap">
-    <div class="kicker">Отзывы</div>
-    <h2 style="font-size:34px;margin-bottom:32px">Что говорят клиенты</h2>
-    <div class="card" style="max-width:840px">
-      <div class="stars">★★★★★</div>
-      <p class="quote">«Татьяна Анатольевна — это подарок Бога. Талантливая, многогранная, ответственная, пунктуальная, позитивная, энергичная, терпеливая, мягкая, знающая всё))) Если жизнь свела Вас с Татьяной Анатольевной, вы точно счастливчик судьбы — и вас ждут радикальные изменения (при условии, что вы тоже много работаете, а не ждёте магии от занятий). Мы работаем уже два года, и какой бы у меня ни был вопрос, я в первую очередь обращусь к Татьяне: знания и практику, связанную с работой мозга и мышления, доступнее и интереснее не передаст никто другой. Я всегда получаю именно то, за чем обращаюсь, и даже больше. Спасибо Вам огромное ❤️»</p>
-      <div class="who">— Стелла · работаем с Татьяной 2 года</div>
-    </div>
-  </div>
-</section>
-
-<section class="faq" style="background:var(--soft)">
+<!-- ======================= FAQ ======================= -->
+<section class="faq">
   <div class="wrap">
     <div class="kicker">Вопросы</div>
-    <h2 style="font-size:34px;margin-bottom:32px">Частые вопросы</h2>
-    <details><summary>Это тест или «гадание»?</summary><p>Научный метод: психометрический тест на основе исследований, запатентованный (метод А. Лямина, патент №2626248). Результат — про реальные особенности вашего мышления.</p></details>
-    <details><summary>Сколько времени занимает?</summary><p>Тест — около 25 минут онлайн. Разбор с Татьяной — встреча 2,5 часа.</p></details>
-    <details><summary>Это онлайн или очно?</summary><p>Диагностика — онлайн. Разбор — онлайн или очно, как вам удобно.</p></details>
-    <details><summary>Что я получу в итоге?</summary><p>Свой формат мышления, описание сильных сторон и зон роста, персональные рекомендации по жизни, делу и отношениям.</p></details>
-    <details><summary>Подходит ли для бизнеса?</summary><p>Да. Командная диагностика показывает роли, климат, риски и помогает собрать команду под задачи.</p></details>
+    <h2 style="font-size:34px;margin-bottom:26px">Частые вопросы</h2>
+    <details><summary>Это тест или «гадание»?</summary><p>Научный метод: психометрический тест на основе исследований, запатентованный (метод А. Лямина, патент №2626248). Диагностика — 152 вопроса. Результат про реальные особенности вашего мышления, а не про знак зодиака.</p></details>
+    <details><summary>Сколько времени занимает?</summary><p>Тест — около 25 минут онлайн, в любое удобное время. Разбор со мной — встреча на 2–2,5 часа.</p></details>
+    <details><summary>Это онлайн или очно?</summary><p>Диагностика — онлайн. Разбор — онлайн или очно в Петербурге, как вам удобно.</p></details>
+    <details><summary>Я не в бизнесе, мне это подойдёт?</summary><p>Да. Половина запросов не про деньги, а про «делаю много, а будто не своё», про отношения в семье и про выбор пути для ребёнка. Формат мышления работает одинаково и там, и там.</p></details>
+    <details><summary>Я уже проходил кучу тестов, и ничего не изменилось</summary><p>Тест сам по себе ничего и не меняет — он только показывает карту. Меняет разбор и то, что вы после него переставляете в своих делах. Поэтому диагностика у меня никогда не продаётся отдельно от встречи.</p></details>
+    <details><summary>Сколько стоит начать?</summary><p>Ноль. Первые 15 минут бесплатно, разбираем одну вашу задачу. Дальше решаете сами: платная работа начинается от 3 000 ₽ в группе и от 15 000 ₽ лично.</p></details>
   </div>
 </section>
 
-<section id="cta">
+<!-- ======================= CTA ======================= -->
+<section id="cta" style="padding-top:20px">
   <div class="cta">
-    <h2>Начните понимать себя — <span class="accent">с диагностики</span></h2>
-    <p>Узнайте свой формат мышления и получите разбор с Татьяной Маштаковой.</p>
-    <a class="btn" href="https://t.me/mindmenter">Записаться в Telegram</a>
+    <h2>Начнём с <span class="accent">одной вашей задачи</span></h2>
+    <p>Пятнадцать минут. Вы приходите с вопросом, который крутится в голове, и уходите с пониманием, что с ним делать.</p>
+    <a class="btn" href="https://t.me/formatmind_bot">15 минут ясности — бесплатно</a>
+    <div class="note">Или напишите мне лично: <a href="https://t.me/MashtakovaTA" style="color:var(--gold)">@MashtakovaTA</a></div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <p>Татьяна Маштакова · «Разумное наставничество» · метод «Формат мышления»</p>
-    <p style="margin-top:8px"><a href="https://t.me/mindmenter">Telegram-канал @mindmenter</a></p>
-    <p class="muted" style="margin-top:14px;font-size:13px">© 2026 · Форматы мышления</p>
+    Татьяна Маштакова · наставник · метод «Формат мышления»<br>
+    <a href="https://t.me/mindmenter">Telegram-канал @mindmenter</a> · <a href="https://t.me/MashtakovaTA">Написать лично</a><br><br>
+    © 2026
   </div>
 </footer>
 
