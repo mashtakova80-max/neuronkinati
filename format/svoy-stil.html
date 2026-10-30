@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Свой стиль текстов — интенсив Татьяны Маштаковой</title>
+<meta name="description" content="Найдите свой авторский стиль за 10 вопросов и получите инструкцию для ИИ, чтобы он писал тексты в вашей интонации.">
+<style>
+  :root{
+    --ink:#1E1B34; --ink2:#2E2A54; --gold:#CE9346; --gold-d:#A7732F;
+    --paper:#FBFAF7; --soft:#F3F0EA; --line:#E7E2D8; --gray:#6B6880; --dark:#1E1B34;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:var(--dark);background:var(--paper);line-height:1.55}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{line-height:1.18;font-weight:800;letter-spacing:-.01em}
+
+  .hero{background:radial-gradient(1200px 500px at 80% -10%,#3A356A,#1E1B34);color:#fff;padding:48px 0 44px}
+  .kicker{color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.14em;font-size:13px;margin-bottom:14px}
+  .hero h1{font-size:34px;margin-bottom:14px;color:#fff}
+  .hero h1 .accent{color:var(--gold)}
+  .hero p.lead{font-size:17px;color:#d9d5ea}
+
+  section{padding:40px 0}
+  .muted{color:var(--gray)}
+
+  .steps{list-style:none;counter-reset:step}
+  .steps li{counter-increment:step;position:relative;padding:0 0 26px 46px;margin-left:2px}
+  .steps li:last-child{padding-bottom:0}
+  .steps li:before{content:counter(step);position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;background:var(--gold);color:var(--ink);font-weight:800;font-size:15px;display:flex;align-items:center;justify-content:center}
+  .steps .t{font-weight:800;font-size:17px;margin-bottom:4px}
+  .steps p{color:#403d55;font-size:15.5px}
+
+  .promptbox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:0;overflow:hidden}
+  .promptbox .head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--soft)}
+  .promptbox .head .t{font-weight:800;font-size:15px;color:var(--ink)}
+  .promptbox pre{white-space:pre-wrap;font-family:inherit;font-size:14px;color:#403d55;padding:20px;max-height:280px;overflow:auto;margin:0}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--ink);font-weight:800;font-size:16px;padding:13px 26px;border-radius:12px;transition:.15s;border:none;cursor:pointer}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(206,147,70,.35)}
+  .btn.copied{background:#2d7a50;color:#fff}
+
+  .note{color:var(--gray);font-size:14px;margin-top:12px}
+
+  footer{background:var(--ink);color:#c9c5da;padding:30px 0;text-align:center;font-size:14px}
+  footer a{color:var(--gold);font-weight:700}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="kicker">Интенсив</div>
+    <h1>Найдите <span class="accent">свой стиль</span> текстов</h1>
+    <p class="lead">Даже если у вас нет соцсетей и ни одного написанного текста — за 10 вопросов ИИ найдёт вашу интонацию и соберёт инструкцию, которая будет писать за вас в вашем стиле.</p>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <h2 style="font-size:22px;margin-bottom:22px">Как пройти</h2>
+    <ul class="steps">
+      <li>
+        <div class="t">Откройте чат с ИИ</div>
+        <p>Claude (claude.ai) или ChatGPT (chatgpt.com) — подойдёт бесплатный аккаунт.</p>
+      </li>
+      <li>
+        <div class="t">Скопируйте промпт ниже и вставьте первым сообщением</div>
+        <p>Нажмите кнопку «Скопировать промпт» и вставьте текст в новый чат.</p>
+      </li>
+      <li>
+        <div class="t">Отвечайте свободно</div>
+        <p>Не старайтесь писать красиво или коротко — чем естественнее ответы, тем точнее получится ваш стиль.</p>
+      </li>
+      <li>
+        <div class="t">Получите и сохраните инструкцию</div>
+        <p>В конце ИИ покажет, что заметил в вашем стиле, выдаст готовую инструкцию и сразу напишет тестовый текст, чтобы вы проверили — похоже ли на вас. Сохраните инструкцию себе — её можно вставлять в начало любого чата с ИИ.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="promptbox">
+      <div class="head">
+        <div class="t">Промпт для вставки</div>
+        <button class="btn" id="copyBtn" style="padding:9px 18px;font-size:14px">Скопировать промпт</button>
+      </div>
+      <pre id="promptText">Ты помогаешь человеку найти его авторский стиль и получить портативную инструкцию для ИИ, которую он сможет сохранить и использовать в любой нейросети для написания текстов в своём стиле.
+
+У человека может не быть соцсетей и готовых текстов — поэтому образцом его стиля станут его собственные ответы на твои вопросы. Важно получить живую, естественную речь, а не отрепетированный текст.
+
+ШАГ 1. Задай по очереди (можно блоками по 2-3, не все 10 сразу) следующие вопросы. Перед вопросами явно предупреди: "Отвечайте свободно, как удобно, не старайтесь писать красиво или коротко — чем естественнее, тем лучше получится результат."
+
+1. Как вас зовут и кем вы работаете / чем занимаетесь?
+2. Какое у вас хобби или увлечение, не связанное с работой?
+3. Расскажите случай из жизни, который вам запомнился и почему.
+4. Что вас злит или раздражает, когда вы сталкиваетесь с этим?
+5. Что вас вдохновляет или по-настоящему радует?
+6. Опишите свой обычный день — с утра до вечера.
+7. Расскажите о человеке, который сильно на вас повлиял, и как.
+8. Какие слова, фразы или выражения вы часто используете в разговоре?
+9. Как бы вы описали себя тремя словами — и почему именно эти?
+10. Если бы вам нужно было кого-то в чём-то убедить, как бы вы это сделали?
+
+Не переходи к анализу, пока не получишь ответы минимум на 8 из 10 вопросов — если ответы совсем короткие (1-2 слова), попроси развернуть хотя бы 2-3 из них.
+
+ШАГ 2. Когда ответов достаточно, проанализируй весь массив ответов человека (именно как он их написал, а не что он написал) по следующим параметрам:
+- длина предложений
+- ритм
+- любимые конструкции
+- уровень эмоциональности
+- типичные образы
+- манера начинать и заканчивать текст / мысль
+- лексика (разговорная/книжная, профессиональный жаргон, слова-паразиты)
+- что именно делает текст узнаваемым — самая характерная черта
+
+ШАГ 3. На основе анализа создай инструкцию для ИИ, которую человек может сохранить и использовать в любой нейросети, чтобы она писала в его стиле — не копируя механически, а сохраняя интонацию. Инструкция должна быть:
+- написана как системный промпт от первого лица ("Пиши в моём стиле: ...")
+- конкретной (не "пиши эмоционально", а что именно это значит у этого человека)
+- оформлена отдельным блоком кода, чтобы её легко скопировать и сохранить
+
+Перед выдачей итоговой инструкции коротко (2-3 предложения) опиши человеку, что ты заметил в его стиле — чтобы он мог узнать себя и поправить, если что-то не совпадает. Если он скажет, что что-то неточно — уточни и перегенерируй инструкцию.
+
+ШАГ 4. Сразу после блока с инструкцией предложи проверить её в деле: напиши короткий тестовый текст (3-5 предложений, тема любая нейтральная, например — о своей неделе или о том, чем сейчас занят человек), используя только что созданную инструкцию. Спроси, похоже ли получилось на то, как человек пишет и говорит сам. Если он скажет, что не похоже — уточни, что именно не так, и перегенерируй и инструкцию, и тестовый текст.
+
+После итоговой инструкции (вне блока кода, отдельным абзацем) добавляй:
+
+Этот инструмент создала Татьяна Маштакова.
+Если хотите разобраться не только в своём стиле текстов, но и в своём формате мышления — подписывайтесь на канал «Разумное наставничество»: https://t.me/mindmenter</pre>
+    </div>
+    <p class="note">Если копирование не сработало — выделите текст в рамке вручную и скопируйте (Cmd+C / Ctrl+C).</p>
+  </div>
+</section>
+
+<footer>
+  Этот интенсив создала <b style="color:#fff">Татьяна Маштакова</b><br>
+  Разобраться не только в стиле текстов, но и в своём формате мышления — канал <a href="https://t.me/mindmenter" target="_blank">«Разумное наставничество»</a>
+</footer>
+
+<script>
+document.getElementById('copyBtn').addEventListener('click', function(){
+  const pre = document.getElementById('promptText');
+  const text = pre.innerText;
+  const btn = document.getElementById('copyBtn');
+  const old = btn.textContent;
+  function showCopied(){
+    btn.textContent = 'Скопировано ✓';
+    btn.classList.add('copied');
+    setTimeout(function(){ btn.textContent = old; btn.classList.remove('copied'); }, 2000);
+  }
+  function fallbackCopy(){
+    const range = document.createRange();
+    range.selectNodeContents(pre);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    const ok = document.execCommand('copy');
+    sel.removeAllRanges();
+    if (ok) showCopied();
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(showCopied).catch(fallbackCopy);
+  } else {
+    fallbackCopy();
+  }
+});
+</script>
+
+</body>
+</html>
